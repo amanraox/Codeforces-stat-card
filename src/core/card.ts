@@ -113,25 +113,27 @@ export function buildCard(user: CodeforcesUser, config: CardConfig, theme: Theme
   const { defs, bgItems } = buildBackground(theme, config.bgImage, w, y);
   const children = [...bgItems, ...sections.map((s) => s.item)];
 
-  // Codeforces icon + text — top-right corner
-  const cfTextX = w - PADDING;
-  const iconX = cfTextX - 100;
-  const iconY = PADDING + 4;
-  const cfIcon = group(
+  // Codeforces icon + text — top-right, icon then text, no overlap at any width
+  // Layout: [icon 19px] [4px gap] [text] — all right-aligned from w - PADDING
+  const cfLabelRight = w - PADDING;
+  const cfIconW = 19; // 3 bars: 5+2+5+2+5
+  const cfGap = 5;
+  // "Codeforces" at 13px ≈ 72px; total block = 19 + 5 + 72 = 96px
+  const cfBlockStart = cfLabelRight - 96;
+  const cfIconY = PADDING + 4;
+  children.push(group(
     [
-      rect(iconX + 0, iconY + 10, 5, 7, { fill: "#f9a825", rx: 1 }),
-      rect(iconX + 7, iconY + 5, 5, 12, { fill: "#1a8cd8", rx: 1 }),
-      rect(iconX + 14, iconY + 0, 5, 17, { fill: "#e53935", rx: 1 }),
+      rect(cfBlockStart, cfIconY + 10, 5, 7, { fill: "#f9a825", rx: 1 }),
+      rect(cfBlockStart + 7, cfIconY + 5, 5, 12, { fill: "#1a8cd8", rx: 1 }),
+      rect(cfBlockStart + 14, cfIconY + 0, 5, 17, { fill: "#e53935", rx: 1 }),
     ],
     { opacity: 0.7 }
-  );
-  children.push(cfIcon);
+  ));
   children.push(
-    text("Codeforces", cfTextX, PADDING + 20, {
+    text("Codeforces", cfBlockStart + cfIconW + cfGap, PADDING + 20, {
       size: 13,
       fill: theme.subtext,
       weight: "600",
-      anchor: "end",
     })
   );
 
