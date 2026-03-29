@@ -12,18 +12,18 @@ export default function Preview({ svgUrl }: PreviewProps) {
 
   return (
     <div className="relative">
-      <div className="absolute -top-3 left-4 px-2 bg-cream font-mono text-xs tracking-wider text-brown-400 uppercase">
+      <div className="absolute -top-3 left-4 px-2 bg-background font-mono text-xs tracking-wider text-text-secondary uppercase">
         Preview
       </div>
       <div
-        className="border-2 border-brown-200 rounded-xl p-6 min-h-[200px] flex items-center justify-center bg-white/50"
+        className="border-2 border-border rounded-xl p-6 min-h-[200px] flex items-center justify-center bg-surface/50"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, var(--brown-200) 0.5px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, var(--border) 0.5px, transparent 0)`,
           backgroundSize: "16px 16px",
         }}
       >
         {!svgUrl && (
-          <p className="text-brown-300 font-serif italic text-lg">
+          <p className="text-text-muted font-mono italic text-lg">
             Enter a username and click Generate
           </p>
         )}
@@ -49,7 +49,7 @@ export default function Preview({ svgUrl }: PreviewProps) {
             />
             {loading && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex items-center gap-2 text-brown-400">
+                <div className="flex items-center gap-2 text-text-secondary">
                   <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.3" />
                     <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
@@ -59,7 +59,7 @@ export default function Preview({ svgUrl }: PreviewProps) {
               </div>
             )}
             {error && (
-              <p className="text-brown-400 font-mono text-sm">Failed to load preview</p>
+              <p className="text-text-secondary font-mono text-sm">Failed to load preview</p>
             )}
           </div>
         )}

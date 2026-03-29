@@ -31,9 +31,9 @@ export default function CopyButton({ text, label }: CopyButtonProps) {
   return (
     <button
       onClick={handleCopy}
-      className="group flex items-center gap-2 px-4 py-2.5 bg-brown-800 text-amber-light rounded-lg font-mono text-sm
-        hover:bg-brown-700 active:scale-[0.98] transition-all duration-200
-        border border-brown-700 hover:border-brown-600 cursor-pointer"
+      className="group flex items-center gap-2 px-4 py-2.5 bg-surface text-cf-cyan rounded-lg font-mono text-sm
+        hover:bg-surface-2 active:scale-[0.98] transition-all duration-200
+        border border-border hover:border-border-light cursor-pointer"
     >
       {copied ? (
         <>

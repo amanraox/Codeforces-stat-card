@@ -110,30 +110,30 @@ function ColorPicker({
           type="color"
           value={value || placeholder}
           onChange={(e) => onChange(e.target.value)}
-          className="w-9 h-9 rounded-lg border-2 border-brown-200 cursor-pointer p-0.5
-            group-hover:border-brown-400 transition-colors"
+          className="w-9 h-9 rounded-lg border-2 border-border cursor-pointer p-0.5
+            group-hover:border-border-light transition-colors"
         />
         {value && (
           <button
             onClick={(e) => { e.preventDefault(); onChange(""); }}
-            className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-brown-500 text-white rounded-full
+            className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-cf-blue text-white rounded-full
               text-[10px] leading-none flex items-center justify-center cursor-pointer
-              hover:bg-brown-700 transition-colors"
+              hover:bg-cf-blue-dim transition-colors"
           >
             ×
           </button>
         )}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[11px] text-brown-400 mb-0.5 leading-tight">{label}</div>
+        <div className="text-[11px] text-text-secondary mb-0.5 leading-tight">{label}</div>
         <input
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full px-1.5 py-0.5 text-xs font-mono border border-brown-200 rounded
-            bg-white text-brown-700 placeholder:text-brown-300
-            focus:outline-none focus:border-brown-400 transition-colors"
+          className="w-full px-1.5 py-0.5 text-xs font-mono border border-border rounded
+            bg-surface text-text-primary placeholder:text-text-muted
+            focus:outline-none focus:border-border-light transition-colors"
         />
       </div>
     </div>
@@ -191,7 +191,7 @@ export default function ConfigForm() {
     // Add a cache-bust to force fresh fetch from browser (server still uses its own cache)
     setSvgUrl(url + (url.includes("?") ? "&" : "?") + `_t=${Date.now()}`);
     setCommittedUrl(url);
-    setCommittedMarkdown(`![CodeChef Stats](${url})`);
+    setCommittedMarkdown(`![Codeforces Stats](${url})`);
   }, [username, theme, extension, font, hide, colors, bgImage]);
 
   const handleSubmit = useCallback(
@@ -227,7 +227,7 @@ export default function ConfigForm() {
       <form onSubmit={handleSubmit} className="relative">
         <div className="flex gap-3">
           <div className="flex-1 relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brown-400 font-mono text-sm">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary font-mono text-sm">
               codeforces.com/profile/
             </span>
             <input
@@ -236,9 +236,9 @@ export default function ConfigForm() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="username"
-              className="w-full pl-[210px] pr-4 py-3.5 bg-white border-2 border-brown-200 rounded-xl
-                font-mono text-brown-800 placeholder:text-brown-300
-                focus:outline-none focus:border-brown-500 focus:ring-2 focus:ring-brown-500/10
+              className="w-full pl-[210px] pr-4 py-3.5 bg-surface border-2 border-border rounded-xl
+                font-mono text-text-primary placeholder:text-text-muted
+                focus:outline-none focus:border-cf-blue focus:ring-2 focus:ring-cf-blue/10
                 transition-all duration-200"
             />
           </div>
@@ -249,7 +249,7 @@ export default function ConfigForm() {
       <div className="space-y-4">
         {THEME_ROWS.map((row) => (
           <div key={row.label}>
-            <label className="block font-mono text-[10px] tracking-wider text-brown-400 uppercase mb-1.5">
+            <label className="block font-mono text-[10px] tracking-wider text-text-secondary uppercase mb-1.5">
               {row.label}
             </label>
             <div className="flex gap-2 flex-wrap">
@@ -268,8 +268,8 @@ export default function ConfigForm() {
                     <div
                       className={`w-full aspect-[3/2] rounded-lg border-2 overflow-hidden relative transition-all duration-200
                         ${isActive
-                          ? "border-brown-600 shadow-md shadow-brown-600/30 ring-2 ring-brown-600/20"
-                          : "border-brown-200 group-hover:border-brown-400"
+                          ? "border-cf-blue shadow-md shadow-cf-blue/30 ring-2 ring-cf-blue/20"
+                          : "border-border group-hover:border-border-light"
                         }`}
                       style={{ background: swatch[0] }}
                     >
@@ -278,7 +278,7 @@ export default function ConfigForm() {
                       />
                     </div>
                     <span className={`text-[10px] font-mono leading-tight truncate w-full text-center
-                      ${isActive ? "text-brown-700 font-semibold" : "text-brown-400"}`}>
+                      ${isActive ? "text-text-primary font-semibold" : "text-text-secondary"}`}>
                       {t.replace("gradient-", "")}
                     </span>
                   </button>
@@ -292,16 +292,16 @@ export default function ConfigForm() {
       {/* Font & Extension */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block font-mono text-xs tracking-wider text-brown-400 uppercase mb-2">Font</label>
+          <label className="block font-mono text-xs tracking-wider text-text-secondary uppercase mb-2">Font</label>
           <select value={font} onChange={(e) => setFont(e.target.value)}
-            className="w-full px-4 py-2.5 bg-white border-2 border-brown-200 rounded-lg font-mono text-sm text-brown-700 focus:outline-none focus:border-brown-500 transition-colors cursor-pointer">
+            className="w-full px-4 py-2.5 bg-surface border-2 border-border rounded-lg font-mono text-sm text-text-primary focus:outline-none focus:border-cf-blue transition-colors cursor-pointer">
             {FONTS.map((f) => <option key={f.value} value={f.value}>{f.label}</option>)}
           </select>
         </div>
         <div>
-          <label className="block font-mono text-xs tracking-wider text-brown-400 uppercase mb-2">Extension</label>
+          <label className="block font-mono text-xs tracking-wider text-text-secondary uppercase mb-2">Extension</label>
           <select value={extension} onChange={(e) => setExtension(e.target.value)}
-            className="w-full px-4 py-2.5 bg-white border-2 border-brown-200 rounded-lg font-mono text-sm text-brown-700 focus:outline-none focus:border-brown-500 transition-colors cursor-pointer">
+            className="w-full px-4 py-2.5 bg-surface border-2 border-border rounded-lg font-mono text-sm text-text-primary focus:outline-none focus:border-cf-blue transition-colors cursor-pointer">
             {EXTENSIONS.map((ext) => <option key={ext.value} value={ext.value}>{ext.label}</option>)}
           </select>
         </div>
@@ -309,14 +309,14 @@ export default function ConfigForm() {
 
       {/* Hide Fields */}
       <div>
-        <label className="block font-mono text-xs tracking-wider text-brown-400 uppercase mb-2">Hide Fields</label>
+        <label className="block font-mono text-xs tracking-wider text-text-secondary uppercase mb-2">Hide Fields</label>
         <div className="flex flex-wrap gap-2">
           {HIDE_OPTIONS.map((opt) => (
             <button key={opt.value} onClick={() => toggleHide(opt.value)}
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border cursor-pointer
                 ${hide.includes(opt.value)
-                  ? "bg-brown-200 text-brown-700 border-brown-300 line-through"
-                  : "bg-white text-brown-500 border-brown-200 hover:border-brown-300"
+                  ? "bg-surface-2 text-text-primary border-border-light line-through"
+                  : "bg-surface text-text-secondary border-border hover:border-border-light"
                 }`}>
               {opt.label}
             </button>
@@ -325,31 +325,31 @@ export default function ConfigForm() {
       </div>
 
       {/* Custom Theme Builder */}
-      <div className="border-2 border-brown-200 rounded-xl overflow-hidden">
+      <div className="border-2 border-border rounded-xl overflow-hidden">
         <button onClick={() => setShowCustomize(!showCustomize)}
-          className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-brown-50/50 transition-colors cursor-pointer">
+          className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-surface/50 transition-colors cursor-pointer">
           <div className="flex items-center gap-3">
-            <svg className="w-5 h-5 text-brown-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <svg className="w-5 h-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
             </svg>
-            <span className="font-mono text-xs tracking-wider text-brown-600 uppercase font-semibold">Custom Theme Builder</span>
+            <span className="font-mono text-xs tracking-wider text-text-primary uppercase font-semibold">Custom Theme Builder</span>
             {activeOverrides.length > 0 && (
-              <span className="px-2 py-0.5 bg-brown-600 text-cream text-[10px] font-mono rounded-full">
+              <span className="px-2 py-0.5 bg-cf-blue text-white text-[10px] font-mono rounded-full">
                 {activeOverrides.length} override{activeOverrides.length > 1 ? "s" : ""}
               </span>
             )}
           </div>
-          <svg className={`w-4 h-4 text-brown-400 transition-transform duration-200 ${showCustomize ? "rotate-180" : ""}`}
+          <svg className={`w-4 h-4 text-text-secondary transition-transform duration-200 ${showCustomize ? "rotate-180" : ""}`}
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
 
         {showCustomize && (
-          <div className="border-t border-brown-200">
-            <div className="px-5 py-3 bg-brown-50/30 flex items-center gap-3 border-b border-brown-100">
-              <span className="text-[11px] text-brown-400">Palette:</span>
-              <div className="flex-1 h-6 rounded-md flex overflow-hidden border border-brown-200">
+          <div className="border-t border-border">
+            <div className="px-5 py-3 bg-surface/30 flex items-center gap-3 border-b border-border">
+              <span className="text-[11px] text-text-secondary">Palette:</span>
+              <div className="flex-1 h-6 rounded-md flex overflow-hidden border border-border">
                 {COLOR_FIELDS.slice(0, 6).map((cf) => (
                   <div key={cf.key} className="flex-1 h-full"
                     title={`${cf.label}: ${colors[cf.key] || (isDark ? cf.default_d : cf.default_l)}`}
@@ -368,33 +368,33 @@ export default function ConfigForm() {
               </div>
 
               {activeOverrides.length > 0 && (
-                <div className="flex items-center gap-3 pt-2 border-t border-brown-100">
+                <div className="flex items-center gap-3 pt-2 border-t border-border">
                   <button onClick={() => setColors({})}
-                    className="text-xs text-brown-400 hover:text-brown-600 transition-colors cursor-pointer flex items-center gap-1">
+                    className="text-xs text-text-secondary hover:text-text-primary transition-colors cursor-pointer flex items-center gap-1">
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                     Reset all overrides
                   </button>
-                  <span className="text-[10px] text-brown-300">Active: {activeOverrides.join(", ")}</span>
+                  <span className="text-[10px] text-text-muted">Active: {activeOverrides.join(", ")}</span>
                 </div>
               )}
 
-              <div className="pt-3 border-t border-brown-100">
-                <label className="flex items-center gap-2 text-xs text-brown-500 font-semibold mb-2">
+              <div className="pt-3 border-t border-border">
+                <label className="flex items-center gap-2 text-xs text-text-secondary font-semibold mb-2">
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                   Background Image
-                  <span className="font-normal text-brown-300">(https .jpg/.png/.webp)</span>
+                  <span className="font-normal text-text-muted">(https .jpg/.png/.webp)</span>
                 </label>
                 <div className="flex gap-2">
                   <input type="url" value={bgImage} onChange={(e) => setBgImage(e.target.value)}
                     placeholder="https://example.com/image.jpg"
-                    className="flex-1 px-3 py-2 text-sm font-mono border-2 border-brown-200 rounded-lg bg-white text-brown-700 placeholder:text-brown-300 focus:outline-none focus:border-brown-500 transition-colors" />
+                    className="flex-1 px-3 py-2 text-sm font-mono border-2 border-border rounded-lg bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:border-cf-blue transition-colors" />
                   {bgImage && (
                     <button onClick={() => setBgImage("")}
-                      className="px-3 py-2 text-xs text-brown-400 border-2 border-brown-200 rounded-lg hover:border-brown-400 hover:text-brown-600 transition-colors cursor-pointer">
+                      className="px-3 py-2 text-xs text-text-secondary border-2 border-border rounded-lg hover:border-border-light hover:text-text-primary transition-colors cursor-pointer">
                       Clear
                     </button>
                   )}
@@ -408,9 +408,9 @@ export default function ConfigForm() {
       {/* Generate Button — right above preview */}
       <button
         onClick={handleGenerate}
-        className="w-full py-3.5 bg-brown-600 text-cream rounded-xl font-semibold text-lg
-          hover:bg-brown-700 active:scale-[0.99] transition-all duration-200
-          shadow-lg shadow-brown-600/20 cursor-pointer"
+        className="w-full py-3.5 bg-cf-blue text-white rounded-xl font-semibold text-lg
+          hover:bg-cf-blue-dim active:scale-[0.99] transition-all duration-200
+          shadow-lg shadow-cf-blue/20 cursor-pointer"
       >
         Generate Card
       </button>
@@ -422,14 +422,14 @@ export default function ConfigForm() {
       {committedUrl && (
         <div className="space-y-4 animate-slide-up">
           <div>
-            <label className="block font-mono text-xs tracking-wider text-brown-400 uppercase mb-2">Markdown</label>
+            <label className="block font-mono text-xs tracking-wider text-text-secondary uppercase mb-2">Markdown</label>
             <div className="flex items-stretch gap-3">
               <div className="code-block flex-1 overflow-x-auto whitespace-nowrap">{committedMarkdown}</div>
               <CopyButton text={committedMarkdown} label="Copy" />
             </div>
           </div>
           <div>
-            <label className="block font-mono text-xs tracking-wider text-brown-400 uppercase mb-2">URL</label>
+            <label className="block font-mono text-xs tracking-wider text-text-secondary uppercase mb-2">URL</label>
             <div className="flex items-stretch gap-3">
               <div className="code-block flex-1 overflow-x-auto whitespace-nowrap">{committedUrl}</div>
               <CopyButton text={committedUrl} label="Copy" />
