@@ -115,7 +115,7 @@ export function buildCard(user: CodeforcesUser, config: CardConfig, theme: Theme
 
   // Codeforces icon + text — top-right corner
   const cfTextX = w - PADDING;
-  const iconX = cfTextX - 80;
+  const iconX = cfTextX - 100;
   const iconY = PADDING + 4;
   const cfIcon = group(
     [
