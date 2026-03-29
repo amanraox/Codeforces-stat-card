@@ -7,7 +7,7 @@ export function parseQuery(
   username: string,
   params: URLSearchParams
 ): CardConfig {
-  const theme = params.get("theme") || "light";
+  const theme = params.get("theme") || "gradient-midnight";
 
   const extParam = params.get("ext");
   const extension: Extension | null =

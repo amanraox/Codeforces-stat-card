@@ -152,7 +152,7 @@ function buildApiUrl(
   bgImage: string
 ): string {
   const params = new URLSearchParams();
-  if (theme !== "light") params.set("theme", theme);
+  if (theme !== "gradient-midnight") params.set("theme", theme);
   if (extension) params.set("ext", extension);
   if (font !== "roboto mono") params.set("font", font);
   if (hide.length > 0) params.set("hide", hide.join(","));
@@ -167,7 +167,7 @@ function buildApiUrl(
 export default function ConfigForm() {
   // Form state (live editing, not yet applied)
   const [username, setUsername] = useState("");
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("gradient-midnight");
   const [extension, setExtension] = useState("");
   const [font, setFont] = useState("roboto mono");
   const [hide, setHide] = useState<string[]>([]);
