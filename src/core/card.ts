@@ -1,7 +1,7 @@
 import type { CodeforcesUser, CardConfig, ThemePalette } from "./types";
 import { CARD_FONTS, DEFAULT_FONT } from "./types";
 import { Item } from "./item";
-import { rect, group, setCardFont, getCardFont } from "./elements";
+import { rect, text, group, setCardFont, getCardFont } from "./elements";
 import { renderHeader, renderRatings } from "./sections";
 import { renderHeatmap, renderContestChart } from "./extensions";
 
@@ -113,18 +113,27 @@ export function buildCard(user: CodeforcesUser, config: CardConfig, theme: Theme
   const { defs, bgItems } = buildBackground(theme, config.bgImage, w, y);
   const children = [...bgItems, ...sections.map((s) => s.item)];
 
-  // Codeforces logo icon (3 ascending bars, official colors) in top-right corner
-  const iconX = w - PADDING - 24;
-  const iconY = PADDING + 2;
+  // Codeforces icon + text — top-right corner
+  const cfTextX = w - PADDING;
+  const iconX = cfTextX - 80;
+  const iconY = PADDING + 4;
   const cfIcon = group(
     [
-      rect(iconX + 0, iconY + 12, 6, 8, { fill: "#f9a825", rx: 1 }),
-      rect(iconX + 8, iconY + 6, 6, 14, { fill: "#1a8cd8", rx: 1 }),
-      rect(iconX + 16, iconY + 0, 6, 20, { fill: "#e53935", rx: 1 }),
+      rect(iconX + 0, iconY + 10, 5, 7, { fill: "#f9a825", rx: 1 }),
+      rect(iconX + 7, iconY + 5, 5, 12, { fill: "#1a8cd8", rx: 1 }),
+      rect(iconX + 14, iconY + 0, 5, 17, { fill: "#e53935", rx: 1 }),
     ],
-    { opacity: 0.6 }
+    { opacity: 0.7 }
   );
   children.push(cfIcon);
+  children.push(
+    text("Codeforces", cfTextX, PADDING + 20, {
+      size: 13,
+      fill: theme.subtext,
+      weight: "600",
+      anchor: "end",
+    })
+  );
 
   const googleFontName = GOOGLE_FONT_NAMES[fontKey] || GOOGLE_FONT_NAMES[DEFAULT_FONT];
   const fontImport = `@import url('https://fonts.googleapis.com/css2?family=${googleFontName}&display=swap');`;
