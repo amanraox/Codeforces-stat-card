@@ -1,7 +1,7 @@
 import type { CodeforcesUser, CardConfig, ThemePalette } from "./types";
 import { CARD_FONTS, DEFAULT_FONT } from "./types";
 import { Item } from "./item";
-import { rect, setCardFont, getCardFont } from "./elements";
+import { rect, group, setCardFont, getCardFont } from "./elements";
 import { renderHeader, renderRatings } from "./sections";
 import { renderHeatmap, renderContestChart } from "./extensions";
 
@@ -112,6 +112,19 @@ export function buildCard(user: CodeforcesUser, config: CardConfig, theme: Theme
 
   const { defs, bgItems } = buildBackground(theme, config.bgImage, w, y);
   const children = [...bgItems, ...sections.map((s) => s.item)];
+
+  // Codeforces logo icon (3 ascending bars) in top-right corner
+  const iconX = w - PADDING - 24;
+  const iconY = PADDING + 2;
+  const cfIcon = group(
+    [
+      rect(iconX + 0, iconY + 12, 6, 8, { fill: theme.subtext, rx: 1 }),
+      rect(iconX + 8, iconY + 6, 6, 14, { fill: theme.subtext, rx: 1 }),
+      rect(iconX + 16, iconY + 0, 6, 20, { fill: theme.subtext, rx: 1 }),
+    ],
+    { opacity: 0.35 }
+  );
+  children.push(cfIcon);
 
   const googleFontName = GOOGLE_FONT_NAMES[fontKey] || GOOGLE_FONT_NAMES[DEFAULT_FONT];
   const fontImport = `@import url('https://fonts.googleapis.com/css2?family=${googleFontName}&display=swap');`;
