@@ -113,16 +113,16 @@ export function buildCard(user: CodeforcesUser, config: CardConfig, theme: Theme
   const { defs, bgItems } = buildBackground(theme, config.bgImage, w, y);
   const children = [...bgItems, ...sections.map((s) => s.item)];
 
-  // Codeforces logo icon (3 ascending bars) in top-right corner
+  // Codeforces logo icon (3 ascending bars, official colors) in top-right corner
   const iconX = w - PADDING - 24;
   const iconY = PADDING + 2;
   const cfIcon = group(
     [
-      rect(iconX + 0, iconY + 12, 6, 8, { fill: theme.subtext, rx: 1 }),
-      rect(iconX + 8, iconY + 6, 6, 14, { fill: theme.subtext, rx: 1 }),
-      rect(iconX + 16, iconY + 0, 6, 20, { fill: theme.subtext, rx: 1 }),
+      rect(iconX + 0, iconY + 12, 6, 8, { fill: "#f9a825", rx: 1 }),
+      rect(iconX + 8, iconY + 6, 6, 14, { fill: "#1a8cd8", rx: 1 }),
+      rect(iconX + 16, iconY + 0, 6, 20, { fill: "#e53935", rx: 1 }),
     ],
-    { opacity: 0.35 }
+    { opacity: 0.6 }
   );
   children.push(cfIcon);
 
