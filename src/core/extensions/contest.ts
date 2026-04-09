@@ -35,8 +35,8 @@ export function renderContestChart(
     })
   );
 
-  const last20 = contests.slice(-30);
-  const ratings = last20.map((c) => c.newRating);
+  const last30 = contests.slice(-30);
+  const ratings = last30.map((c) => c.newRating);
   const minR = Math.min(...ratings);
   const maxR = Math.max(...ratings);
   const range = maxR - minR || 1;
@@ -88,12 +88,12 @@ export function renderContestChart(
 
   // Plot points
   const points: { px: number; py: number }[] = [];
-  for (let i = 0; i < last20.length; i++) {
-    const px = chartX + (i / (last20.length - 1)) * chartWidth;
+  for (let i = 0; i < last30.length; i++) {
+    const px = chartX + (i / (last30.length - 1)) * chartWidth;
     const py =
       chartY +
       CHART_HEIGHT -
-      ((last20[i].newRating - paddedMin) / paddedRange) * CHART_HEIGHT;
+      ((last30[i].newRating - paddedMin) / paddedRange) * CHART_HEIGHT;
     points.push({ px, py });
   }
 
