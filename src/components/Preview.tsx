@@ -33,7 +33,7 @@ export default function Preview({ svgUrl }: PreviewProps) {
             <img
               key={svgUrl}
               src={svgUrl}
-              alt="CodeChef card preview"
+              alt="Codeforces card preview"
               className={`max-w-full transition-opacity duration-500 ${loading ? "opacity-0" : "opacity-100"}`}
               onLoad={() => {
                 setLoading(false);
